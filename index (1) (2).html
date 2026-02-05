@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Surprise ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#ff6a88,#ff99ac,#ffd1dc);
+}
+
+/* Card */
+.card{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(15px);
+    padding:50px 70px;
+    border-radius:25px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 40px rgba(0,0,0,0.25);
+    position:relative;
+    z-index:10;
+}
+
+h1{
+    font-size:2.4rem;
+    margin-bottom:10px;
+}
+
+.sub{
+    font-size:1rem;
+    margin-bottom:35px;
+    opacity:0.9;
+}
+
+/* Buttons */
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:100px;
+}
+
+button{
+    padding:14px 32px;
+    border:none;
+    border-radius:35px;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+#yes{
+    background:#ff4d6d;
+    color:white;
+}
+
+#no{
+    background:white;
+    color:#ff4d6d;
+}
+
+/* Message */
+.message{
+    margin-top:35px;
+    font-size:1.2rem;
+    display:none;
+    animation:pop 0.5s ease forwards;
+}
+
+@keyframes pop{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+/* Hearts */
+.heart{
+    position:absolute;
+    width:22px;
+    height:22px;
+    background:#ff4d6d;
+    transform:rotate(45deg);
+    animation:float 10s linear infinite;
+    opacity:0.6;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    width:22px;
+    height:22px;
+    background:#ff4d6d;
+    border-radius:50%;
+    position:absolute;
+}
+
+.heart::before{top:-11px;left:0;}
+.heart::after{left:-11px;top:0;}
+
+@keyframes float{
+    0%{transform:translateY(100vh) rotate(45deg);}
+    100%{transform:translateY(-10vh) rotate(45deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="sub">please don’t say No 🥺</div>
+
+    <div class="btns">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙈</button>
+    </div>
+
+    <div class="message" id="msg">
+        I knew it that u will say YES 😌💘 <br>
+        Let’s watch something together armpits baby, vomity on Feb 14th 🎬✨ <br>
+        Love you bubbu 🥰
+    </div>
+</div>
+
+<script>
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const msg=document.getElementById("msg");
+
+// No button runs away
+noBtn.addEventListener("mouseover",()=>{
+    const x=Math.random()*(window.innerWidth-120);
+    const y=Math.random()*(window.innerHeight-80);
+    noBtn.style.position="absolute";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+});
+
+// Yes button
+yesBtn.addEventListener("click",()=>{
+    msg.style.display="block";
+    yesBtn.style.display="none";
+    noBtn.style.display="none";
+});
+
+// Create floating hearts
+for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(6+Math.random()*6)+"s";
+    heart.style.opacity=Math.random();
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
